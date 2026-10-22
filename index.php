@@ -32,7 +32,7 @@ $trendFilter = array('PROPERTY_TREND' => '4');
 <h2>Тренды сезона</h2>
 <p>
 	 <?$APPLICATION->IncludeComponent(
-	"custom_test:news.list", 
+	"my:articles.list",
 	".default_custom", 
 	[
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
