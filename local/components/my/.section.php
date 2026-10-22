@@ -1,3 +1,3 @@
 <?
-$sSectionName="bitrix";
+$sSectionName="my";
 ?>
