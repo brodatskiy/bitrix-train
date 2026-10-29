@@ -4,4 +4,5 @@
 
 
 Создана веб-форма [index.php](test/contact/index.php)
+
 Создан шаблон компонента form.result.new, интегрированный с формой [custom](local/templates/my_custom/components/bitrix/form.result.new/custom)
