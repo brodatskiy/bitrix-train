@@ -7,14 +7,13 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 /**
  * @var array $arResult
  */
-//ddebug($arResult);
 
+// Подготовка данных
 $hiddenHtml = '';
 $inputsHtml = '';
 $textareaHtml = '';
 
 foreach ($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion) {
-//    ddebug($arQuestion);
     $field = $arQuestion['STRUCTURE'][0];
     $inputName = "form_" . $field['FIELD_TYPE'] . "_" . $field['ID'];
 
@@ -63,6 +62,7 @@ foreach ($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion) {
 }
 ?>
 
+<!--Начало вёрстки-->
 <div class="contact-form">
     <? if ($arResult["isFormDescription"] == "Y" || $arResult["isFormTitle"] == "Y") { ?>
         <div class="contact-form__head">

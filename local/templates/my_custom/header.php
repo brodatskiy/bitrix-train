@@ -9,6 +9,7 @@ IncludeTemplateLangFile(__FILE__);
 <?$APPLICATION->ShowHead();?>
 <link href="<?=SITE_TEMPLATE_PATH?>/common.css" type="text/css" rel="stylesheet" />
 <!--<link href="--><?php //=SITE_TEMPLATE_PATH?><!--/colors.css" type="text/css" rel="stylesheet" />-->
+<link rel="shortcut icon" type="image/x-icon" href="<?=SITE_TEMPLATE_PATH;?>/images/favicon.604825ed.ico" />
 <title><?$APPLICATION->ShowTitle()?></title>
 </head>
 <body>
