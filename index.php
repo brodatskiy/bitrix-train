@@ -32,8 +32,8 @@ $trendFilter = array('PROPERTY_TREND' => '4');
 <h2>Тренды сезона</h2>
 <p>
 	 <?$APPLICATION->IncludeComponent(
-	"custom_test:news.list", 
-	".default_custom", 
+	"my:news.list",
+	".default",
 	[
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"ADD_SECTIONS_CHAIN" => "Y",
@@ -92,7 +92,7 @@ $trendFilter = array('PROPERTY_TREND' => '4');
 		"SORT_ORDER1" => "DESC",
 		"SORT_ORDER2" => "ASC",
 		"STRICT_SECTION_CHECK" => "N",
-		"COMPONENT_TEMPLATE" => ".default_custom"
+		"COMPONENT_TEMPLATE" => ".default"
 	],
 	false
 );?>
