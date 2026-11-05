@@ -7,5 +7,9 @@
 
 Сделан шаблон комплексного компонента news. На главной подключён news.list, на детальной news.detail
 
+шаблон компонента news.detail
+[news.detail](local/templates/my_custom/components/bitrix/news.detail)
+
+раздел
 [news](test/news)
 
