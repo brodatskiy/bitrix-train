@@ -5,9 +5,6 @@ namespace Dev\Site\Handlers;
 
 use Bitrix\Iblock\IblockTable;
 use Bitrix\Iblock\SectionTable;
-use Bitrix\Main\ArgumentException;
-use Bitrix\Main\ObjectPropertyException;
-use Bitrix\Main\SystemException;
 use Bitrix\Main\Type\DateTime;
 
 class Iblock
@@ -64,7 +61,7 @@ class Iblock
         $sectionId = reset($sectionIds) ?: 0;
 
         $previewText = $targetIblock['NAME'] . '->' . self::getSectionPathRecursive($sectionId) . '->' . $fields['NAME'];
-        ddebug($previewText);
+
         // Добавляем элемент лога, привязывая его к найденному/созданному разделу
         $el = new \CIBlockElement();
         $logElementFields = [
