@@ -3,11 +3,43 @@
 namespace Dev\Site\Agents;
 
 
+use Bitrix\Iblock\IblockTable;
+use Bitrix\Iblock\Elements\ElementLogTable;
+
 class Iblock
 {
-    public static function clearOldLogs()
+    public const KEEP_COUNT = 10;
+
+    public static function clearOldLogs(): string
     {
-        // Здесь напиши свой агент
+        if (!\Bitrix\Main\Loader::includeModule('iblock')) {
+            return '\\' . __CLASS__ . '::' . __FUNCTION__ . '();';
+        }
+
+        $keepCount = 10;
+
+
+        $rsLastLogElements = ElementLogTable::getList([
+            'select' => ['ID'],
+            'order' => ['ID' => 'DESC'],
+            'limit' => self::KEEP_COUNT,
+        ])->fetchAll();
+
+        $keepIds = array_column($rsLastLogElements, 'ID');
+
+        $rsLogElementToDelete = ElementLogTable::getList([
+            'select' => ['ID'],
+            'filter' => ['!ID' => $keepIds],
+            'order' => ['ID' => 'DESC'],
+        ])->fetchAll();
+
+        $toDeleteIds = array_column($rsLogElementToDelete, 'ID');
+
+        foreach ($toDeleteIds as $logId) {
+            \CIBlockElement::Delete($logId);
+        }
+
+        return '\\' . __CLASS__ . '::' . __FUNCTION__ . '();';
     }
 
     public static function example()

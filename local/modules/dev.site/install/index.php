@@ -42,6 +42,7 @@ class dev_site extends CModule
 
         $this->InstallFiles();
         $this->InstallLogIBlock();
+        $this->InstallAgents();
     }
 
     public function DoUninstall()
@@ -53,7 +54,7 @@ class dev_site extends CModule
 
     }
 
-    function InstallLogIBlock()
+    public function InstallLogIBlock()
     {
         \Bitrix\Main\Loader::includeModule('iblock');
 
@@ -73,8 +74,7 @@ class dev_site extends CModule
                 'en' => ['Logging', 'Sections', 'Elements'],
             ];
 
-            foreach ($names as $languageId => [$name, $sectionsName, $elementsName])
-            {
+            foreach ($names as $languageId => [$name, $sectionsName, $elementsName]) {
                 $languageResult = TypeLanguageTable::add([
                     'IBLOCK_TYPE_ID' => self::IBLOCK_TYPE_ID,
                     'LANGUAGE_ID' => $languageId,
@@ -83,8 +83,7 @@ class dev_site extends CModule
                     'ELEMENTS_NAME' => $elementsName,
                 ]);
 
-                if (!$languageResult->isSuccess())
-                {
+                if (!$languageResult->isSuccess()) {
                     return false;
                 }
             }
@@ -158,5 +157,17 @@ class dev_site extends CModule
         }
 
         return true;
+    }
+
+    private function InstallAgents()
+    {
+        global $APPLICATION;
+
+        $agentId = CAgent::AddAgent('Dev\Site\Agents\Iblock::clearOldLogs();', $this->MODULE_ID, 'N', 3600, '', 'Y', '', 100, false, false);
+        if ($agentId === false) {
+            $exception = $APPLICATION->GetException();
+            $message = $exception ? $exception->GetString() : 'Agent was not registered';
+            throw new \Bitrix\Main\SystemException($message);
+        }
     }
 }
